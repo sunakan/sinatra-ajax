@@ -10,3 +10,9 @@ RUN groupadd --system ${APP_NAME} \
 COPY --chown=${APP_NAME}:${APP_NAME} app/Gemfile* ./
 
 RUN bundle install
+
+COPY --chown=${APP_NAME}:${APP_NAME} app/* ./
+
+USER ${APP_NAME}
+
+CMD ["bundle", "exec", "ruby", "./app.rb"]
